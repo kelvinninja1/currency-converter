@@ -6,30 +6,30 @@
 		<meta name="description" content="Универсален валутен конвертор и калкулатор с отворен код, преобразуващ всички видове свободно конвертируеми една към друга световни валути." />
 		<meta name="keywords" content="валутни курсове, конвертиране на валути, валута, валутни котировки, валутен конвертор, валутен калкулатор, обменни валутни курсове" />
 
-		<link rel="stylesheet" type="text/css" href="css/currencyConverterStyle.css" />
-		<link rel="stylesheet" type="text/css" href="css/dropkick.css" />
-		<link rel="stylesheet" type="text/css" href="css/tableStyle.css" />
-		
-		<script src="javaScript/jquery.min.js"></script> 
-		<script src="javaScript/jquery-ui.min.js"></script>
-		
-		<script src="javaScript/money.js"></script>
-		<script src="javaScript/jquery.dropkick-1.0.0.js"></script>
-		<script src="javaScript/currencyConverterJavaScript.js"></script>
-		
-		<?php include 'mainComponents/head.html'; ?>
-		
+		<link rel="stylesheet" href="css/style.css" />
+		<link rel="stylesheet" href="css/dropkick.css" />
+		<link rel="stylesheet" href="css/tableStyle.css" />
+
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery-ui.min.js"></script>
+
+		<script src="js/money.js"></script>
+		<script src="js/jquery.dropkick-1.0.0.js"></script>
+		<script src="js/script.js"></script>
+
+		<?php include 'inc/head.html'; ?>
+
 	</head>
-	
+
 <body>
 
 	<header>
 		<h1><a href="http://currency.superkalo.com">Валутен Конвертор и Калкулатор</a></h1>
 		<h2>Актуални <strong>обменни валутни курсове</strong> | Преобразувай между <span id="numberOfCurrency">157</span> <strong>видове валути</strong>.</h2>
 	</header>
-	
-	<?php include 'mainComponents/nav.html'; ?>
-		
+
+	<?php include 'inc/nav.html'; ?>
+
 	<section>
 		<!-- ** Left Division ** -->
 		<div id="homeLeft" class="left">
@@ -38,14 +38,14 @@
 			<div id="calculatorPlusOne">
 				<a href="#" id="add">+ Добави</a>
 			</div>
-			
+
 			<div id="total">
 				<h3 id="resultNumber" style="border: none; margin-top:10px; margin-right: 5px; float: left;">Резултат:</h3>
 				<input type="text" name="resultValueField" id="resultValueField" readonly="readonly" />
 				<select id="calculatorResultOption"></select>
 			</div>
 		</div>
-		
+
 		<!-- ** Right Division ** -->
 		<div id="homeRight" class="right">
 			<h3>Валутен конвертор:</h3>
@@ -53,14 +53,14 @@
 			<select name="state" class="default" tabindex="1" id="selectFrom" style="float: left;"></select>
 			<table id="headerTable" style="width: 100%; margin-right: 1px;"><tr><th>Стойност</th><th style="width: 31px;">Код</th><th>Парична единица</th></tr></table>
 			<div id="currencyRates">
-			
-				<?php include 'mainComponents/currencyTable.html'; ?>
-				
+
+				<?php include 'inc/currencyTable.html'; ?>
+
 			</div>
 		</div>
 	</section>
-	
-	<?php include 'mainComponents/footer.html' ?>
-	
+
+	<?php include 'inc/footer.html' ?>
+
 </body>
 </html>
