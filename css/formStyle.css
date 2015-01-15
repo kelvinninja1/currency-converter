@@ -1,0 +1,74 @@
+form {
+	text-align: left;
+	margin: 10px;
+}
+input {
+	font-family: Verdana, Tahoma;
+	margin: 5px 0 7px 0;
+	width: 337px;
+	padding-left: 10px;
+	height: 30px;
+	color: #003399;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	background: url("../images/backgroundImg/pattern.png") repeat scroll 0 0 rgba(255, 255, 255, 1.9);
+	font-weight: bold;
+	font-size: 12px;
+}
+input:focus {
+	box-shadow: 0 0 5px rgba(0, 51, 153, 0.3);
+	border: 1px solid rgba(0, 51, 153, 0.6);
+}
+textarea {
+	resize: none;
+	font-size: 14px;
+	font-family: Verdana, Tahoma;
+	margin-top:5px;
+	margin-bottom: 10px;
+	width: 331px;
+	height: 100px;
+	color: #003399;
+	border: 1px solid #ccc;
+	font-weight: bold;
+	padding: 10px;
+	border-radius: 5px;
+	background: url("../images/backgroundImg/pattern.png") repeat scroll 0 0 rgba(255, 255, 255, 0.9);
+}
+textarea:focus {
+	box-shadow: 0 0 5px rgba(0, 51, 153, 0.3);
+	border: 1px solid rgba(0, 51, 153, 0.6);
+}
+#submitBut{
+	color: #111111;
+    font-family: 'Bad Script','Marck Script',Arial;
+    font-size: 20px;
+	letter-spacing: 5px;
+	text-transform: uppercase;
+    font-weight: normal;
+	width: 354px;
+	padding-left: 10px;
+	height: 50px;
+	background-color: #fff;
+	border: 1px solid rgba(0, 51, 153, 0.5);
+	-webkit-transition: background-color 0.2s ease-out;
+    -moz-transition: background-color 0.2s ease-out;
+    -o-transition: background-color 0.2s ease-out;
+}
+#submitBut:hover{
+	background-color: rgba(0, 51, 153, 0.5);
+	border: 1px solid rgba(0, 51, 153, 0.6);
+	color: #fff;
+	cursor: pointer;
+}
+.formUI {
+	margin: 0 20px 0px 20px;
+	width: 100px;
+}
+.formUI label {
+	font-family: Verdana, Tahoma;
+    font-size: 12px;
+	text-indent: 5px;
+	text-shadow: 1px 1px 5px #FFFFFF;
+	color: #333;
+	font-weight: bold;
+}
