@@ -31,7 +31,7 @@
             <div id="calculatorCurrencyBoxContent" data-bind="foreach: calculationsArray">
                 <div class="calculatorCurrencyBox">
                     <input type="text" data-bind="value: chosenCalculationValue, valueUpdate: 'afterkeydown'" />
-                    <select data-bind="options: $root.allCurrencies, value: chosenCalculationCurrency, optionsText: 'currencyName'"></select>
+                    <select data-bind="options: $root.allCurrencies, value: chosenCalculationCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName'"></select>
                 </div>
             </div>
             <div id="calculatorPlusOne" data-bind="click: addCalcunationBox, visible: calculationsArray().length < 5">
@@ -49,7 +49,7 @@
         <div id="homeRight" class="right">
             <h3>Валутен конвертор:</h3>
 
-            <select data-bind="options: allCurrencies, value: chosenTableCurrency, optionsText: 'currencyName', event:{ change: fillCurrencyExchangeTable }"></select>
+            <select data-bind="options: allCurrencies, value: chosenTableCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName', event:{ change: fillCurrencyExchangeTable }"></select>
             <p>Стойност на 1 <span data-bind="text: chosenTableCurrency"></span>:</p>
 
             <table id="headerTable" style="width: 100%; margin-right: 1px;"><tr><th>Стойност</th><th style="width: 31px;">Код</th><th>Парична единица</th></tr></table>
