@@ -355,7 +355,7 @@ function ExchangeRatesViewModel() {
 
 
     //Table with convertion rates:
-    self.chosenTableCurrency = ko.observable("BGN");
+    self.chosenTableCurrency = ko.observable('BGN');
     self.exchangeTableResults = ko.observableArray();
     self.fillCurrencyExchangeTable = function(view, b){
         self.exchangeTableResults.removeAll();
@@ -373,7 +373,7 @@ function ExchangeRatesViewModel() {
                         });
                     },
                     error: function() {
-                        console.log("Problem :(");
+                        console.log('Problem :(');
                     }
                 });
             })(i);
@@ -383,20 +383,21 @@ function ExchangeRatesViewModel() {
 
 
     //Currency Calculator:
-    self.CalculationBox = function(value, code) {
+    self.CalculationBox = function(value, code){
         this.chosenCalculationValue = ko.observable(value);
-        this.chosenCalculationCurrency = code;
+        this.chosenCalculationCurrency = ko.observable(code);
     }
     self.calculationsArray = ko.observableArray([
-        new self.CalculationBox(1, "BGN")
+        new self.CalculationBox(1, 'BGN')
     ]);
     self.addCalcunationBox = function(){
-        self.calculationsArray.push(new self.CalculationBox(1, "BGN"));
+        self.calculationsArray.push(new self.CalculationBox(1, 'BGN'));
     };
     self.finalResult = ko.computed(function(){
         var total = 0;
         for (var i = 0; i < self.calculationsArray().length; i++) {
             total += parseFloat(self.calculationsArray()[i].chosenCalculationValue());
+            console.log(self.calculationsArray()[i].chosenCalculationCurrency().currencyCode);
         }
         return total;
     });
