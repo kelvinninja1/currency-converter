@@ -1,4 +1,4 @@
 {
     "directory": "lib/",
-    "json": "libraries.json"
+    "json": "lib/libraries.json"
 }
