@@ -384,8 +384,8 @@ function ExchangeRatesViewModel() {
 
     //Currency Calculator:
     self.CalculationBox = function(value, code) {
-        this.chosenCalculationValue = value;
-        this. chosenCalculationCurrency = code;
+        this.chosenCalculationValue = ko.observable(value);
+        this.chosenCalculationCurrency = code;
     }
     self.calculationsArray = ko.observableArray([
         new self.CalculationBox(1, "BGN")
@@ -396,7 +396,7 @@ function ExchangeRatesViewModel() {
     self.finalResult = ko.computed(function(){
         var total = 0;
         for (var i = 0; i < self.calculationsArray().length; i++) {
-            total += self.calculationsArray()[i].chosenCalculationValue;
+            total += parseFloat(self.calculationsArray()[i].chosenCalculationValue());
         }
         return total;
     });
