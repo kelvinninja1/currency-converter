@@ -53,17 +53,16 @@
             <p>Стойност на 1 <span data-bind="text: chosenTableCurrency"></span>:</p>
 
             <table id="headerTable" style="width: 100%; margin-right: 1px;"><tr><th>Стойност</th><th style="width: 31px;">Код</th><th>Парична единица</th></tr></table>
-            <div id="currencyRates">
-                <table id="currencyTable" >
-                    <tbody data-bind="foreach: exchangeTableResults">
-                        <tr>
-                            <th data-bind="text: exchangeRate"></th>
-                            <td data-bind="text: convertedCurrencyCode"></td>
-                            <td data-bind="text: convertedCurrencyName"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+
+            <table class="currency-rates-table">
+                <tbody data-bind="foreach: exchangeTableResults">
+                    <tr>
+                        <th data-bind="text: exchangeRate"></th>
+                        <td data-bind="text: convertedCurrencyCode"></td>
+                        <td data-bind="text: convertedCurrencyName"></td>
+                    </tr>
+                </tbody>
+            </table>
 
         </div>
     </section>

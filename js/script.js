@@ -366,7 +366,6 @@ function ExchangeRatesViewModel() {
                     dataType:'jsonp',
                     success: function(data) {
                         //console.log("1 " + data.to + " is " + data.rate + " " + data.from);
-                        console.log(self.chosenTableCurrency())
                         self.exchangeTableResults.push({
                             convertedCurrencyCode: data.from,
                             convertedCurrencyName: self.allCurrencies[i].currencyName,
@@ -398,7 +397,7 @@ function ExchangeRatesViewModel() {
         var total = 0;
         for (var i = 0; i < self.calculationsArray().length; i++) {
             total += parseFloat(self.calculationsArray()[i].chosenCalculationValue());
-            console.log(self.calculationsArray()[i].chosenCalculationCurrency());
+            //console.log(self.calculationsArray()[i].chosenCalculationCurrency());
         }
         return total;
     });

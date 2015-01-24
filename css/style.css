@@ -1,1 +1,331 @@
-@import url('reset.css');@import url(http://fonts.googleapis.com/css?family=Marck+Script&subset=cyrillic);/* Change default Highlight Effect */::selection {	background: #a8d1ff; /* Safari */	}::-moz-selection {	background: #a8d1ff; /* Firefox */}body{	background: url("../img/backgroundImg/woodBG.gif") repeat scroll 0 0 #F1F1F1;	font-family: Verdana, sans;	margin: 0;	font-size: 12px;}header {	background: url("../img/backgroundImg/pattern.png") repeat scroll 0 0 rgba(247, 247, 247, 0.2);	width: 100%;	height: 90px;	box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.6);	margin: 0px auto;	text-align: center;}header img{	float: left;	display: block;	padding-left: 20px;	width: 150px;}header h1{	color: #fff;	text-shadow: 1px 1px 5px #000;	font-weight: normal;	font-family: 'Marck Script', sans;	font-size: 25px;	letter-spacing: 1px;	padding-top: 12px;}header a{	color: #fff;	text-decoration: none;}header h2 {	color: #111;	text-shadow: 1px 1px 5px #999;	font-weight: normal;	font-family: 'Marck Script', sans;	font-size: 20px;	letter-spacing: 1px;	border: none;	text-align: center;	margin: 0;	padding: 0;}.lineHeight {	line-height: 40px;}#numberOfCurrency{	font-size: 140%;}nav{    height: 25px;	margin: 0 auto;	padding: 10px 250px 0 0;    width: 564px;	text-align: right;}nav a{	text-decoration: none;	color: #fff;	text-shadow: 1px 1px 5px #777;	-webkit-transition: color 0.2s ease-out;    -moz-transition: color 0.2s ease-out;    -o-transition: color 0.2s ease-out;	margin-top: 5px;}nav a:hover{	color: #333;}section {	width: 1000px;	height: 630px;	margin: -40px auto;	background: url("../img/backgroundImg/notebook.png") no-repeat;	}section p {	color: #333;	line-height: 160%;	text-align: justify;	text-indent: 20px;	padding: 3px 0px 0px 0px;	margin: 0px;}.ulTextClass {	color: #333;	line-height: 160%;	text-align: left;	text-indent: 5px;	margin: 5px 0 0 60px;	padding: 3px 0px 0px 0px;	margin: 5px 0 0 60px;	}.rightSectionA {	text-decoration: none;	-webkit-transition: color 0.2s ease-out;    -moz-transition: color 0.2s ease-out;    -o-transition: color 0.2s ease-out;	color: #333;	font-weight: bold;	border-bottom: 1px dashed #555;}.rightSectionA:hover {	color: #fff;	text-shadow: 1px 1px 5px #000;}.left {	float: left;	width: 397px;	overflow: hidden;	height: 510px;	text-align: center;	margin: 60px 6px 0px 114px;}.right {		float: left;	height: 510px;	text-align: center;	width: 391px;	margin: 60px 0 0;}h3 {	color: #222;	text-shadow: 1px 1px 5px #fff;	font-weight: normal;	font-family: 'Marck Script', sans;	font-size: 24px;	text-align: left;	text-indent: 25px;	margin-left: -10px;	margin-bottom: 5px;	margin-top: 25px;	padding: 2px 0 2px 0;	border-bottom: 1px dashed #999;}#resultNumber {	font-size: 20px;	padding-top: 7px;}.currencyRates{	height: 363px;	width: 394px;	overflow-y: auto;	margin: -1px 0 0 0;}#calculatorCurrencyBoxContent{	width: 342px;	height: auto;	margin: 0 auto;}#calculatorCurrencyBoxContent .dk_container {	margin-top: 5px;}#dk_container_selectFrom {	margin-top: 4px;}.calculatorCurrencyBox{	border: 1px dashed #999;	border-top: none;	width: 240px;	height: 42px;	margin: 0 auto;	padding: 10px 15px 10px 20px;}.calculatorCurrencyBox #dk_container_currencyBoxSelector1{	margin: 6px 0 0 0;}#total #dk_container_calculatorResultOption{	margin: 15px 0 0 0;}#total input {    border-radius: 6px 6px 6px 6px;    color: #3EC3FF;    font-family: Tahoma, sans;    font-size: 17px;    font-weight: bold;    height: 30px;	float: left;	margin: 11px 7px 0 0;    width: 145px;	text-align: right;}#calculatorCurrencyBoxContent input {	border-radius: 6px;	width: 100px;	height: 30px;	padding: 5px;	font-size: 17px;	text-align: right;	color: #3EC3FF;	font-weight: bold;	font-family: Tahoma, sans;	margin-right: 7px;}#calculatorCurrencyBoxContent input:hover {	-webkit-box-shadow: 0 0 1px 1px #3EC3FF;	-moz-box-shadow: 0 0 1px 1px #3EC3FF;	box-shadow: 0 0 1px 1px #3EC3FF;}#calculatorCurrencyBoxContent input:focus {	-webkit-box-shadow: 0 0 3px 1px #3EC3FF;	-moz-box-shadow: 0 0 3px 1px #3EC3FF;	box-shadow: 0 0 3px 1px #3EC3FF;}#calculatorPlusOne {	margin: 0 auto;	padding-top: 5px;	width: 150px;	height: 35px;	color: #333;	border: 1px solid #999;	background-color: rgba(255, 255, 102, 0);	background: url("../img/backgroundImg/menuBG.gif") repeat scroll 0 0;	//background: #ffff99;	font-size: 22px;	font-family: 'Marck Script', sans;	border-top: none;	-webkit-transition: background 0.4s ease 0s;    -moz-transition: background 0.4s ease 0s;    -o-transition: background 0.4s ease 0s;	}#calculatorPlusOne:hover{	cursor: pointer;	background: #FFFF66;	color: #fff;}#add {	text-decoration: none;	color: #333;}#total{	border-top: 1px solid #333;	height: 67px;	position: absolute;	top: 570px;	width: 397px;}#homeLeft p {	padding: 3px 10px 0px 10px;}#homeRight p {	padding: 3px 10px 0px 10px;}.rotate{    -webkit-transition-duration: 0.3s;    -moz-transition-duration: 0.3s;    -o-transition-duration: 0.3s;    transition-duration: 0.3s;     -webkit-transition-property: -webkit-transform;    -moz-transition-property: -moz-transform;    -o-transition-property: -o-transform;    transition-property: transform;     overflow:hidden;	cursor: pointer;     }   .rotate:hover {    -webkit-transform:rotate(-40deg);    -moz-transform:rotate(-40deg);    -o-transform:rotate(-40deg);}strong {	font-weight: bold;}.imgStyle {	padding: 5px;	background: #fff;	border: 1px solid #ccc;	margin: 6px 0 0 0;}.imgAroundText{	float: left;	padding: 5px;	background: #fff;	border: 1px solid #ccc;	margin: 8px 8px 8px 0;	width: 252px;}footer {	background: url("../img/backgroundImg/headerPaper.png") no-repeat scroll 0 0;	background-position: center; 	text-align: center;	width: 700px;	height: 160px;	margin: 0px auto;	margin-top: 10px;	padding-top: 120px;}footer img {	display: block;	float: left;	margin-top: -16px;	padding-left: 75px;}footer p {	display: block;	font-size: 11px;	color: #333;	line-height: 18px;	text-align: left;	margin: 0px 0 0 182px;}footer a {	text-decoration: none;	color: #003399;	text-shadow: 1px 1px 5px #fff;	-webkit-transition: color 0.2s ease-out;    -moz-transition: color 0.2s ease-out;    -o-transition: color 0.2s ease-out;}footer a:hover{	color: #7FCEEF;}.error {	background-color: red !important;	color: #fff !important;}
+@import url('reset.css');
+@import url(http://fonts.googleapis.com/css?family=Marck+Script&subset=cyrillic);
+/* Change default Highlight Effect */
+::selection {
+    background: #a8d1ff; /* Safari */
+    }
+::-moz-selection {
+    background: #a8d1ff; /* Firefox */
+}
+body{
+    background: url("../img/backgroundImg/woodBG.gif") repeat scroll 0 0 #F1F1F1;
+    font-family: Verdana, sans;
+    margin: 0;
+    font-size: 12px;
+}
+header {
+    background: url("../img/backgroundImg/pattern.png") repeat scroll 0 0 rgba(247, 247, 247, 0.2);
+    width: 100%;
+    height: 90px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.6);
+    margin: 0px auto;
+    text-align: center;
+}
+header img{
+    float: left;
+    display: block;
+    padding-left: 20px;
+    width: 150px;
+}
+header h1{
+    color: #fff;
+    text-shadow: 1px 1px 5px #000;
+    font-weight: normal;
+    font-family: 'Marck Script', sans;
+    font-size: 25px;
+    letter-spacing: 1px;
+    padding-top: 12px;
+}
+header a{
+    color: #fff;
+    text-decoration: none;
+}
+header h2 {
+    color: #111;
+    text-shadow: 1px 1px 5px #999;
+    font-weight: normal;
+    font-family: 'Marck Script', sans;
+    font-size: 20px;
+    letter-spacing: 1px;
+    border: none;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+.lineHeight {
+    line-height: 40px;
+}
+#numberOfCurrency{
+    font-size: 140%;
+}
+nav{
+    height: 25px;
+    margin: 0 auto;
+    padding: 10px 250px 0 0;
+    width: 564px;
+    text-align: right;
+}
+nav a{
+    text-decoration: none;
+    color: #fff;
+    text-shadow: 1px 1px 5px #777;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    margin-top: 5px;
+}
+nav a:hover{
+    color: #333;
+}
+section {
+    width: 1000px;
+    height: 630px;
+    margin: -40px auto;
+    background: url("../img/backgroundImg/notebook.png") no-repeat; 
+}
+section p {
+    color: #333;
+    line-height: 160%;
+    text-align: justify;
+    text-indent: 20px;
+    padding: 3px 0px 0px 0px;
+    margin: 0px;
+}
+.ulTextClass {
+    color: #333;
+    line-height: 160%;
+    text-align: left;
+    text-indent: 5px;
+    margin: 5px 0 0 60px;
+    padding: 3px 0px 0px 0px;
+    margin: 5px 0 0 60px;
+    
+}
+.rightSectionA {
+    text-decoration: none;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+    color: #333;
+    font-weight: bold;
+    border-bottom: 1px dashed #555;
+}
+.rightSectionA:hover {
+    color: #fff;
+    text-shadow: 1px 1px 5px #000;
+}
+.left {
+    float: left;
+    width: 397px;
+    overflow: hidden;
+    height: 510px;
+    text-align: center;
+    margin: 60px 6px 0px 114px;
+}
+.right {    
+    float: left;
+    height: 510px;
+    text-align: center;
+    width: 391px;
+    margin: 60px 0 0;
+}
+h3 {
+    color: #222;
+    text-shadow: 1px 1px 5px #fff;
+    font-weight: normal;
+    font-family: 'Marck Script', sans;
+    font-size: 24px;
+    text-align: left;
+    text-indent: 25px;
+    margin-left: -10px;
+    margin-bottom: 5px;
+    margin-top: 25px;
+    padding: 2px 0 2px 0;
+    border-bottom: 1px dashed #999;
+}
+#resultNumber {
+    font-size: 20px;
+    padding-top: 7px;
+}
+.currency-rates-table {
+    height: 363px;
+    width: 394px;
+    overflow-y: auto;
+    margin: -1px 0 0 0;
+}
+#calculatorCurrencyBoxContent{
+    width: 342px;
+    height: auto;
+    margin: 0 auto;
+}
+#calculatorCurrencyBoxContent .dk_container {
+    margin-top: 5px;
+}
+#dk_container_selectFrom {
+    margin-top: 4px;
+}
+.calculatorCurrencyBox{
+    border: 1px dashed #999;
+    border-top: none;
+    width: 240px;
+    height: 42px;
+    margin: 0 auto;
+    padding: 10px 15px 10px 20px;
+}
+.calculatorCurrencyBox #dk_container_currencyBoxSelector1{
+    margin: 6px 0 0 0;
+}
+#total #dk_container_calculatorResultOption{
+    margin: 15px 0 0 0;
+}
+#total input {
+    border-radius: 6px 6px 6px 6px;
+    color: #3EC3FF;
+    font-family: Tahoma, sans;
+    font-size: 17px;
+    font-weight: bold;
+    height: 30px;
+    float: left;
+    margin: 11px 7px 0 0;
+    width: 145px;
+    text-align: right;
+}
+#calculatorCurrencyBoxContent input {
+    border-radius: 6px;
+    width: 100px;
+    height: 30px;
+    padding: 5px;
+    font-size: 17px;
+    text-align: right;
+    color: #3EC3FF;
+    font-weight: bold;
+    font-family: Tahoma, sans;
+    margin-right: 7px;
+}
+#calculatorCurrencyBoxContent input:hover {
+    -webkit-box-shadow: 0 0 1px 1px #3EC3FF;
+    -moz-box-shadow: 0 0 1px 1px #3EC3FF;
+    box-shadow: 0 0 1px 1px #3EC3FF;
+}
+#calculatorCurrencyBoxContent input:focus {
+    -webkit-box-shadow: 0 0 3px 1px #3EC3FF;
+    -moz-box-shadow: 0 0 3px 1px #3EC3FF;
+    box-shadow: 0 0 3px 1px #3EC3FF;
+}
+#calculatorPlusOne {
+    margin: 0 auto;
+    padding-top: 5px;
+    width: 150px;
+    height: 35px;
+    color: #333;
+    border: 1px solid #999;
+    background-color: rgba(255, 255, 102, 0);
+    background: url("../img/backgroundImg/menuBG.gif") repeat scroll 0 0;
+    //background: #ffff99;
+    font-size: 22px;
+    font-family: 'Marck Script', sans;
+    border-top: none;
+    -webkit-transition: background 0.4s ease 0s;
+    -moz-transition: background 0.4s ease 0s;
+    -o-transition: background 0.4s ease 0s;
+    
+}
+#calculatorPlusOne:hover{
+    cursor: pointer;
+    background: #FFFF66;
+    color: #fff;
+}
+#add {
+    text-decoration: none;
+    color: #333;
+}
+#total{
+    border-top: 1px solid #333;
+    height: 67px;
+    position: absolute;
+    top: 570px;
+    width: 397px;
+}
+#homeLeft p {
+    padding: 3px 10px 0px 10px;
+}
+#homeRight p {
+    padding: 3px 10px 0px 10px;
+}
+.rotate{
+    -webkit-transition-duration: 0.3s;
+    -moz-transition-duration: 0.3s;
+    -o-transition-duration: 0.3s;
+    transition-duration: 0.3s;
+ 
+    -webkit-transition-property: -webkit-transform;
+    -moz-transition-property: -moz-transform;
+    -o-transition-property: -o-transform;
+    transition-property: transform;
+ 
+    overflow:hidden;
+    cursor: pointer;
+ 
+    }  
+ 
+.rotate:hover {
+    -webkit-transform:rotate(-40deg);
+    -moz-transform:rotate(-40deg);
+    -o-transform:rotate(-40deg);
+}
+strong {
+    font-weight: bold;
+}
+.imgStyle {
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin: 6px 0 0 0;
+}
+.imgAroundText{
+    float: left;
+    padding: 5px;
+    background: #fff;
+    border: 1px solid #ccc;
+    margin: 8px 8px 8px 0;
+    width: 252px;
+}
+footer {
+    background: url("../img/backgroundImg/headerPaper.png") no-repeat scroll 0 0;
+    background-position: center; 
+    text-align: center;
+    width: 700px;
+    height: 160px;
+    margin: 0px auto;
+    margin-top: 10px;
+    padding-top: 120px;
+}
+footer img {
+    display: block;
+    float: left;
+    margin-top: -16px;
+    padding-left: 75px;
+}
+footer p {
+    display: block;
+    font-size: 11px;
+    color: #333;
+    line-height: 18px;
+    text-align: left;
+    margin: 0px 0 0 182px;
+}
+footer a {
+    text-decoration: none;
+    color: #003399;
+    text-shadow: 1px 1px 5px #fff;
+    -webkit-transition: color 0.2s ease-out;
+    -moz-transition: color 0.2s ease-out;
+    -o-transition: color 0.2s ease-out;
+}
+footer a:hover{
+    color: #7FCEEF;
+}
+.error {
+    background-color: red !important;
+    color: #fff !important;
+}
