@@ -10,7 +10,7 @@
 		<link rel="stylesheet" href="css/dropkick.css" />
 		<link rel="stylesheet" href="css/tableStyle.css" />
 
-		<script src="js/jquery.min.js"></script>
+		<script src="lib/jquery/dist/jquery.js"></script>
 		<script src="js/jquery-ui.min.js"></script>
 
 		<script src="js/money.js"></script>
