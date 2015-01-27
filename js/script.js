@@ -383,6 +383,7 @@ function ExchangeRatesViewModel() {
 
 
     //Currency Calculator:
+    self.calculationFinalCurrency = "BGN";
     self.CalculationBox = function(value, code){
         this.chosenCalculationValue = ko.observable(value);
         this.chosenCalculationCurrency = ko.observable(code);
@@ -393,14 +394,36 @@ function ExchangeRatesViewModel() {
     self.addCalcunationBox = function(){
         self.calculationsArray.push(new self.CalculationBox(1, 'BGN'));
     };
-    self.finalResult = ko.computed(function(){
-        var total = 0;
+    self.finalResult = ko.observable(0);
+    self.calculateFinalResult = function(){
+        var grandTotal = 0;
+        console.log("1");
+        var promises=[];
         for (var i = 0; i < self.calculationsArray().length; i++) {
-            total += parseFloat(self.calculationsArray()[i].chosenCalculationValue());
+        	console.log("2");
+        	//(function (i) {
+            var request = $.ajax({
+                url: 'http://rate-exchange.appspot.com/currency?from=' + self.calculationsArray()[i].chosenCalculationCurrency() + '&to=' + self.calculationFinalCurrency + "&q=" + self.calculationsArray()[i].chosenCalculationValue(),
+                dataType:'jsonp',
+                success: function(data){
+                	console.log("3n");
+                    //console.log("1 " + data.to + " is " + data.rate + " " + data.from);
+                    grandTotal += data.v;
+                },
+                error: function() {
+                    console.log('Problem :(');
+                }
+            });
+            //})(i);
+            //total += parseFloat(self.calculationsArray()[i].chosenCalculationValue());
             //console.log(self.calculationsArray()[i].chosenCalculationCurrency());
         }
-        return total;
-    });
+        promises.push(request);
+
+        $.when.apply(null, promises).done(function(){
+		    self.finalResult(parseFloat(grandTotal));
+		});
+    };
 
 
 

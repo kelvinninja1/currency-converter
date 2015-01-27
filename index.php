@@ -31,7 +31,7 @@
             <div id="calculatorCurrencyBoxContent" data-bind="foreach: calculationsArray">
                 <div class="calculatorCurrencyBox">
                     <input type="text" data-bind="value: chosenCalculationValue, valueUpdate: 'afterkeydown'" />
-                    <select data-bind="options: $root.allCurrencies, value: chosenCalculationCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName'"></select>
+                    <select data-bind="options: $root.allCurrencies, value: chosenCalculationCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName', event:{ change: $root.calculateFinalResult }"></select>
                 </div>
             </div>
             <div id="calculatorPlusOne" data-bind="click: addCalcunationBox, visible: calculationsArray().length < 5">
@@ -42,7 +42,7 @@
                 <h3 id="resultNumber" style="border: none; margin-top:10px; margin-right: 5px; float: left;">Резултат:</h3>
                 <span data-bind="text: finalResult"></span>
                 <!-- <input type="text" name="resultValueField" id="resultValueField" readonly="readonly" /> -->
-                <select id="calculatorResultOption"></select>
+                <select id="calculatorResultOption" data-bind="options: allCurrencies, value: calculationFinalCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName', event:{ change: calculateFinalResult }"></select>
             </div>
         </div>
 
