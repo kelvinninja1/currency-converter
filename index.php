@@ -55,11 +55,11 @@
             <table id="headerTable" style="width: 100%; margin-right: 1px;"><tr><th>Стойност</th><th style="width: 31px;">Код</th><th>Парична единица</th></tr></table>
 
             <table class="currency-rates-table">
-                <tbody data-bind="foreach: exchangeTableResults">
+                <tbody data-bind="foreach: allCurrencies">
                     <tr>
                         <th data-bind="text: exchangeRate"></th>
-                        <td data-bind="text: convertedCurrencyCode"></td>
-                        <td data-bind="text: convertedCurrencyName"></td>
+                        <td data-bind="text: currencyCode"></td>
+                        <td data-bind="text: currencyName"></td>
                     </tr>
                 </tbody>
             </table>

@@ -192,13 +192,13 @@ function ExchangeRatesViewModel() {
 	var self = this;
 
 	self.allCurrencies = [
-		{ currencyCode: "BGN", currencyName: "Български лев" },
-		{ currencyCode: "EUR", currencyName: "Евро" },
-		{ currencyCode: "USD", currencyName: "Американски долар" },
-		{ currencyCode: "JPY", currencyName: "Японската йена" },
-		{ currencyCode: "GBP", currencyName: "Британската лира" },
-		{ currencyCode: "CHF", currencyName: "Швейцарски франк" },
-		{ currencyCode: "AUD", currencyName: "Австралийски долар" }
+		{ currencyCode: "BGN", currencyName: "Български лев", exchangeRate: ko.observable(0) },
+		{ currencyCode: "EUR", currencyName: "Евро", exchangeRate: ko.observable(0) },
+		{ currencyCode: "USD", currencyName: "Американски долар", exchangeRate: ko.observable(0) },
+		{ currencyCode: "JPY", currencyName: "Японската йена", exchangeRate: ko.observable(0) },
+		{ currencyCode: "GBP", currencyName: "Британската лира", exchangeRate: ko.observable(0) },
+		{ currencyCode: "CHF", currencyName: "Швейцарски франк", exchangeRate: ko.observable(0) },
+		{ currencyCode: "AUD", currencyName: "Австралийски долар", exchangeRate: ko.observable(0) }
         /*
 		{ currencyCode: "CAD", currencyName: "Канадски долар" },
 		{ currencyCode: "SEK", currencyName: "Шведска крона" },
@@ -355,22 +355,16 @@ function ExchangeRatesViewModel() {
 
 
     //Table with convertion rates:
-    self.chosenTableCurrency = ko.observable('BGN');
-    self.exchangeTableResults = ko.observableArray();
+    self.chosenTableCurrency = ko.observable(self.allCurrencies[0].currencyCode);
     self.fillCurrencyExchangeTable = function(view, b){
-        self.exchangeTableResults.removeAll();
         for (var i = 0; i < self.allCurrencies.length; i++) {
-            (function (i) {
+            (function(i){
                 $.ajax({
-                    url: 'http://rate-exchange.appspot.com/currency?from=' + self.allCurrencies[i].currencyCode + '&to=' + self.chosenTableCurrency(),
+                    url: 'http://rate-exchange.appspot.com/currency?from=' + self.chosenTableCurrency() + '&to=' + self.allCurrencies[i].currencyCode,
                     dataType:'jsonp',
                     success: function(data) {
                         //console.log("1 " + data.to + " is " + data.rate + " " + data.from);
-                        self.exchangeTableResults.push({
-                            convertedCurrencyCode: data.from,
-                            convertedCurrencyName: self.allCurrencies[i].currencyName,
-                            exchangeRate: data.rate
-                        });
+                        self.allCurrencies[i].exchangeRate(data.rate);
                     },
                     error: function() {
                         console.log('Problem :(');
