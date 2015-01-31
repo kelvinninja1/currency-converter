@@ -1,372 +1,190 @@
 var KK = {
-	scrollToMainContent: function(speed){
-		$('html, body').animate({
-			scrollTop: $('section').offset().top
-		}, speed);
-	},
-
-	calculateResult: function() {
-		KK.scrollToMainContent(700);
-		var finalResult = 0;
-
-		for(i=0; i<KK.calculatorCurrencyBoxIndex; i++){
-			var calcCurrencyBoxNumberValue = $("#calculatorCurrencyBoxValue" + (i+1)).val();
-			var calcCurrencyBoxSelector = $("#calculatorCurrencyBoxSelector" + (i+1)).val();
-			var calcCurrencyBoxResultSelector = $("#calculatorResultOption").val();
-			finalResult += fx.convert(calcCurrencyBoxNumberValue, {from: calcCurrencyBoxSelector, to: calcCurrencyBoxResultSelector});
-		}
-		if (isNaN(finalResult)) {
-			$("#resultValueField").css({"color": "red"});
-			$("#resultValueField").val("Въведи коректни стойности!");
-			if($("#dk_container_calculatorResultOption").css("display") !== "none"){
-				$("#dk_container_calculatorResultOption").fadeOut(function(){
-					$("#resultValueField").animate({"width": "270px"});
-				});
-				$("#resultValueField").effect("highlight", {"color": "red"}, 200);
-			} else{
-				$("#resultValueField").effect("highlight", {"color": "red"}, 200);
-			}
-		} else{
-			if($("#dk_container_calculatorResultOption").css("display") === "none") {
-				$("#resultValueField").animate({"color": "#3EC3FF"});
-				$("#resultValueField").animate({"width": "145px"}, function(){
-					$("#dk_container_calculatorResultOption").fadeIn();
-				});
-			}
-			$("#resultValueField").val(Math.round(finalResult*100)/100);
-			$("#resultValueField").effect("highlight", {"color": "#FFFF66"}, 200);
-			$('#resultNumber').animate({"color": "#C6C6C6"}, 150, function(){
-				$('#resultNumber').animate({"color": "#111"}, 500)
-			});
-		}
-	},
-
 	onlyNumbers: function(){
 		if(isNaN($("#calculatorCurrencyBoxValue1").val()-0)) {
 			return false;
 		}
-	},
-
-	loadCurrencyRatesInDiv: function(value) {
-		$("#currencyRates").fadeOut(600, function(){
-			//Remove any old html elements in the div:
-			$("#currencyRates").html("");
-
-			//Show new results in the div:
-
-
-			$("#currencyRates").append("<table id='currencyTable'>");
-			if(typeof(value) === "undefined"){
-				value = $('#selectFrom').val();
-			}
-			for (i in KK.currencyRatesObject) {
-				var result = fx.convert(1, {from: value, to: i}).toFixed(2);
-				$("#currencyTable").append("<tr><th style='text-align: right; font-weight: bold;'>" + result + "</th><td>" + i + "</td><td>" + KK.currencyRatesObject[i] + "</td></tr>");
-
-				//TODO: add to array
-
-			}
-			$("#currencyRates").append("</table>");
-
-
-			$("#currencyRates").show("slide", { direction: "up"}, 500);
-		});
-	},
-
-	loadCurrencyRatesInOptionBox: function() {
-		var countCurrency = 0;
-		//Load Every single Currency Rate in right OptionBox:
-		for (i in KK.currencyRatesObject) {
-			$('#selectFrom').append('<option value="' + i + '">' + i + '</option>');
-			$('#calculatorResultOption').append('<option value="' + i + '">' + i + '</option>');
-			countCurrency++;
-		}
-		$("#numberOfCurrency").html(countCurrency).animate({"font-size": "140%"});
-		//If you pick different option:
-		$('#selectFrom').dropkick({
-			change: function (value, label) {
-				KK.loadCurrencyRatesInDiv(value);
-				KK.scrollToMainContent(1000);
-			}
-		});
-		$('#calculatorResultOption').dropkick({
-			change: function (value, label) {
-				KK.calculateResult();
-			}
-		});
-		//Fire the results in the #currencyRates div:
-		KK.loadCurrencyRatesInDiv();
-	},
-
-	addOneCalculatorCurrencyBox: function(oneMoreBoxId, fillSelectorCurrencyId){
-		$("#calculatorCurrencyBoxContent").append('<div class="calculatorCurrencyBox" id="calculatorCurrencyBox' + oneMoreBoxId + '"><input id="' + oneMoreBoxId + '" type="text" name="currencyBox" style="float: left;" /><select id="' + fillSelectorCurrencyId + '"></select></div>');
-		for (i in KK.currencyRatesObject) {
-			$('#' + fillSelectorCurrencyId).append('<option value="' + i + '">' + i + '</option>');
-		}
-		$('#' + fillSelectorCurrencyId).val("USD");
-		$('#' + fillSelectorCurrencyId).dropkick({
-			change: function (value, label) {
-				KK.calculateResult();
-			}
-		});
-	},
-
-	calculatorCurrencyBoxIndex: 0,
-
-	setUpCurrencyBoxes: function() {
-		KK.addOneCalculatorCurrencyBox("calculatorCurrencyBoxValue1", "calculatorCurrencyBoxSelector1");
-		KK.calculatorCurrencyBoxIndex = 1;
-		$("#calculatorCurrencyBoxValue1").keyup(function(){
-			KK.onlyNumbers();
-			KK.calculateResult();
-		});
-		//Add one more on click:
-		var clickIndex = 1;
-		$("#calculatorPlusOne").click(function(){
-			if(clickIndex == 1) {
-				KK.addOneCalculatorCurrencyBox("calculatorCurrencyBoxValue2", "calculatorCurrencyBoxSelector2");
-				$("#calculatorCurrencyBoxValue2").keyup(function(){
-					KK.calculateResult();
-				});
-				clickIndex++;
-				KK.calculatorCurrencyBoxIndex++;
-			} else if (clickIndex == 2){
-				KK.addOneCalculatorCurrencyBox("calculatorCurrencyBoxValue3", "calculatorCurrencyBoxSelector3");
-				$("#calculatorCurrencyBoxValue3").keyup(function(){
-					KK.calculateResult();
-				});
-				clickIndex++;
-				KK.calculatorCurrencyBoxIndex++;
-			} else if (clickIndex == 3){
-				KK.addOneCalculatorCurrencyBox("calculatorCurrencyBoxValue4", "calculatorCurrencyBoxSelector4");
-				$("#calculatorCurrencyBoxValue4").keyup(function(){
-					KK.calculateResult();
-				});
-				clickIndex++;
-				KK.calculatorCurrencyBoxIndex++;
-			} else if (clickIndex == 4){
-				KK.addOneCalculatorCurrencyBox("calculatorCurrencyBoxValue5", "calculatorCurrencyBoxSelector5");
-				$("#calculatorCurrencyBoxValue5").keyup(function(){
-					KK.calculateResult();
-				});
-				KK.calculatorCurrencyBoxIndex++;
-				$("#calculatorPlusOne").fadeOut();
-			}
-			return false;
-
-		});
-
-		KK.loadCurrencyRatesInOptionBox();
-
-	},
-
-	loadExchangeRatesData: function(data) {
-		$.ajax({
-			url: 'http://openexchangerates.org/api/latest.json?app_id=31d99f88fd2c4b5bb43b22a0c398db73',
-			dataType:'jsonp',
-			success: function(data) {
-				if ( typeof fx !== "undefined" && fx.rates ) {
-
-
-					fx.rates = data.rates;
-					fx.base = data.base;
-					//Start the big loading of Currency Rates:
-					KK.setUpCurrencyBoxes();
-				} else {
-					// If not, apply to fxSetup global:
-					var fxSetup = {
-						rates : data.rates,
-						base : data.base
-					}
-				}
-			},
-			error: function() {
-				alert('Възникна проблем с извличането на емисията с обновени валутни курсове.');
-			}
-		});
 	}
 };
+
+//alert('Възникна проблем с извличането на емисията с обновени валутни курсове.');
 
 
 function ExchangeRatesViewModel() {
 	var self = this;
 
 	self.allCurrencies = [
-		{ currencyCode: "BGN", currencyName: "Български лев", exchangeRate: ko.observable(0) },
-		{ currencyCode: "EUR", currencyName: "Евро", exchangeRate: ko.observable(0) },
-		{ currencyCode: "USD", currencyName: "Американски долар", exchangeRate: ko.observable(0) },
-		{ currencyCode: "JPY", currencyName: "Японската йена", exchangeRate: ko.observable(0) },
-		{ currencyCode: "GBP", currencyName: "Британската лира", exchangeRate: ko.observable(0) },
-		{ currencyCode: "CHF", currencyName: "Швейцарски франк", exchangeRate: ko.observable(0) },
-		{ currencyCode: "AUD", currencyName: "Австралийски долар", exchangeRate: ko.observable(0) }
-        /*
-		{ currencyCode: "CAD", currencyName: "Канадски долар" },
-		{ currencyCode: "SEK", currencyName: "Шведска крона" },
-		{ currencyCode: "HKD", currencyName: "Хонгконгски долар" },
-		{ currencyCode: "NOK", currencyName: "Норвежка крона" },
-		{ currencyCode: "AED", currencyName: "Обединените арабски емирства дирхам" },
-		{ currencyCode: "AFN", currencyName: "Афганистански афган" },
-		{ currencyCode: "ALL", currencyName: "Албански лек" },
-		{ currencyCode: "AMD", currencyName: "Арменски драм" },
-		{ currencyCode: "ANG", currencyName: "Холандски Антилски гулден" },
-		{ currencyCode: "AOA", currencyName: "Анголска кванза" },
-		{ currencyCode: "ARS", currencyName: "Аржентинско песо" },
-		{ currencyCode: "AWG", currencyName: "Арубски флорин" },
-		{ currencyCode: "AZN", currencyName: "Азербайджански манат" },
-		{ currencyCode: "BAM", currencyName: "Босна и Херцеговина - Конвертабилна марка" },
-		{ currencyCode: "BBD", currencyName: "Барбейдоски долар" },
-		{ currencyCode: "BDT", currencyName: "Бангладешска така" },
-		{ currencyCode: "BHD", currencyName: "Бахрейнски динар" },
-		{ currencyCode: "BIF", currencyName: "Бурундийски франк" },
-		{ currencyCode: "BMD", currencyName: "Бермудски долар" },
-		{ currencyCode: "BND", currencyName: "Брунейски долар" },
-		{ currencyCode: "BOB", currencyName: "Боливийско боливиано" },
-		{ currencyCode: "BRL", currencyName: "Бразилски реал" },
-		{ currencyCode: "BSD", currencyName: "Бахамски долар" },
-		{ currencyCode: "BTN", currencyName: "Бутански нгултрум" },
-		{ currencyCode: "BWP", currencyName: "Ботсванска пула" },
-		{ currencyCode: "BYR", currencyName: "Беларуска рубла" },
-		{ currencyCode: "BZD", currencyName: "Белизийски долар" },
-		{ currencyCode: "CDF", currencyName: "Конгоански франк" },
-		{ currencyCode: "CLF", currencyName: "Чилийска единица (UF)" },
-		{ currencyCode: "CLP", currencyName: "Чилийско песо" },
-		{ currencyCode: "CNY", currencyName: "Китайски ренминби юан" },
-		{ currencyCode: "COP", currencyName: "Колумбийско песо" },
-		{ currencyCode: "CRC", currencyName: "Костарикански колон" },
-		{ currencyCode: "CUP", currencyName: "Кубинско песо" },
-		{ currencyCode: "CVE", currencyName: "Кабоверденско ескудо" },
-		{ currencyCode: "CZK", currencyName: "Чешка крона" },
-		{ currencyCode: "DJF", currencyName: "Джибутски франк" },
-		{ currencyCode: "DKK", currencyName: "Датска крона" },
-		{ currencyCode: "DOP", currencyName: "Доминиканско песо" },
-		{ currencyCode: "DZD", currencyName: "Алжирски динар" },
-		{ currencyCode: "EGP", currencyName: "Египетска лира" },
-		{ currencyCode: "ETB", currencyName: "Етиопски бир" },
-		{ currencyCode: "FJD", currencyName: "Фиджийски долар" },
-		{ currencyCode: "FKP", currencyName: "Фолкландска лира" },
-		{ currencyCode: "GEL", currencyName: "Грузинска лари" },
-		{ currencyCode: "GHS", currencyName: "Ганайски седи" },
-		{ currencyCode: "GIP", currencyName: "Гибралтарска лира" },
-		{ currencyCode: "GMD", currencyName: "Гамбийски даласи" },
-		{ currencyCode: "GNF", currencyName: "Гвинейски франк" },
-		{ currencyCode: "GTQ", currencyName: "Гватемалски кетцал" },
-		{ currencyCode: "GYD", currencyName: "Гаянски долар" },
-		{ currencyCode: "HNL", currencyName: "Хондураска лемпра" },
-		{ currencyCode: "HRK", currencyName: "Хърватска куна" },
-		{ currencyCode: "HTG", currencyName: "Хаитянски гурд" },
-		{ currencyCode: "HUF", currencyName: "Унгарски форинт" },
-		{ currencyCode: "IDR", currencyName: "Индонезийска рупия" },
-		{ currencyCode: "ILS", currencyName: "Израелски шекел" },
-		{ currencyCode: "INR", currencyName: "Индийска рупия" },
-		{ currencyCode: "IQD", currencyName: "Иракски динар" },
-		{ currencyCode: "IRR", currencyName: "Ирански риал" },
-		{ currencyCode: "ISK", currencyName: "Исландска крона" },
-		{ currencyCode: "JMD", currencyName: "Ямайски долар" },
-		{ currencyCode: "JOD", currencyName: "Йордански динар" },
-		{ currencyCode: "KES", currencyName: "Кенийски шилинг" },
-		{ currencyCode: "KGS", currencyName: "Киргизстански сум" },
-		{ currencyCode: "KHR", currencyName: "Камбоджански риел" },
-		{ currencyCode: "KMF", currencyName: "Коморийски франк" },
-		{ currencyCode: "KPW", currencyName: "Севернокорейски вон" },
-		{ currencyCode: "KRW", currencyName: "Южнокорейски вон" },
-		{ currencyCode: "KWD", currencyName: "Кувейтски динар" },
-		{ currencyCode: "KZT", currencyName: "Казахстанско тенге" },
-		{ currencyCode: "LAK", currencyName: "Лаоски кип" },
-		{ currencyCode: "LBP", currencyName: "Ливанска лира" },
-		{ currencyCode: "LKR", currencyName: "Шриланкска рупия" },
-		{ currencyCode: "LRD", currencyName: "Либерийски долар" },
-		{ currencyCode: "LSL", currencyName: "Лесотско лоти" },
-		{ currencyCode: "LTL", currencyName: "Литовски литас" },
-		{ currencyCode: "LVL", currencyName: "Латвийски лат" },
-		{ currencyCode: "LYD", currencyName: "Либийски динар" },
-		{ currencyCode: "MAD", currencyName: "Марококански дирхам" },
-		{ currencyCode: "MDL", currencyName: "Молдовска лея" },
-		{ currencyCode: "MGA", currencyName: "Малагасийски ариари" },
-		{ currencyCode: "MKD", currencyName: "Македонски денар" },
-		{ currencyCode: "MMK", currencyName: "Мианмарски киат" },
-		{ currencyCode: "MNT", currencyName: "Монголски тугриг" },
-		{ currencyCode: "MOP", currencyName: "Макайска патака" },
-		{ currencyCode: "MRO", currencyName: "Мавританска угуйа" },
-		{ currencyCode: "MUR", currencyName: "Мавританска рупия" },
-		{ currencyCode: "MVR", currencyName: "Малдивска руфия" },
-		{ currencyCode: "MWK", currencyName: "Малавийска кауача" },
-		{ currencyCode: "MXN", currencyName: "Мексиканско песо" },
-		{ currencyCode: "MYR", currencyName: "Малайзийски рингит" },
-		{ currencyCode: "MZN", currencyName: "Мозамбикски метикал" },
-		{ currencyCode: "NAD", currencyName: "Намибийски долар" },
-		{ currencyCode: "NGN", currencyName: "Нигерийска найра" },
-		{ currencyCode: "NIO", currencyName: "Никарагска кордоба" },
-		{ currencyCode: "NPR", currencyName: "Непалски рупей" },
-		{ currencyCode: "NZD", currencyName: "Новозеландски долар" },
-		{ currencyCode: "OMR", currencyName: "Омански риал" },
-		{ currencyCode: "PAB", currencyName: "Панамска балбоа" },
-		{ currencyCode: "PEN", currencyName: "Нов перуански сол" },
-		{ currencyCode: "PGK", currencyName: "Папуа-новогвинейска кина" },
-		{ currencyCode: "PHP", currencyName: "Филипинско песо" },
-		{ currencyCode: "PKR", currencyName: "Пакистанска рупия" },
-		{ currencyCode: "PLN", currencyName: "Полска злота" },
-		{ currencyCode: "PYG", currencyName: "Парагвайски гуарани" },
-		{ currencyCode: "QAR", currencyName: "Катарски риал" },
-		{ currencyCode: "RON", currencyName: "Румънска лея" },
-		{ currencyCode: "RSD", currencyName: "Сръбски динар" },
-		{ currencyCode: "RUB", currencyName: "Руска рубла" },
-		{ currencyCode: "RWF", currencyName: "Руандийски франк" },
-		{ currencyCode: "SAR", currencyName: "Саудитски риал" },
-		{ currencyCode: "SBD", currencyName: "Соломоновски долар" },
-		{ currencyCode: "SCR", currencyName: "Сейшелска рупия" },
-		{ currencyCode: "SDG", currencyName: "Суданска лира" },
-		{ currencyCode: "SGD", currencyName: "Сингапурски долар" },
-		{ currencyCode: "SHP", currencyName: "Паунд на остров Света Елена" },
-		{ currencyCode: "SLL", currencyName: "Сиералеонско леоне" },
-		{ currencyCode: "SOS", currencyName: "Сомалийски шилинг" },
-		{ currencyCode: "SRD", currencyName: "Суринамски долар" },
-		{ currencyCode: "STD", currencyName: "Сао Томе и Принсиписко добра" },
-		{ currencyCode: "SVC", currencyName: "Ел Салвадорски колон" },
-		{ currencyCode: "SYP", currencyName: "Сирийска лира" },
-		{ currencyCode: "SZL", currencyName: "Свазилендски лилангени" },
-		{ currencyCode: "THB", currencyName: "Тайландски бат" },
-		{ currencyCode: "TJS", currencyName: "Таджикски сомони" },
-		{ currencyCode: "TMT", currencyName: "Туркменски манат" },
-		{ currencyCode: "TND", currencyName: "Тунизийски динар" },
-		{ currencyCode: "TOP", currencyName: "Тонганска паанга" },
-		{ currencyCode: "TRY", currencyName: "Турска лира" },
-		{ currencyCode: "TTD", currencyName: "Тринидадски долар" },
-		{ currencyCode: "TWD", currencyName: "Нов Тайвански долар" },
-		{ currencyCode: "TZS", currencyName: "Танзанийски шилинг" },
-		{ currencyCode: "UAH", currencyName: "Украинска гривна" },
-		{ currencyCode: "UGX", currencyName: "Угандийски шилинг" },
-		{ currencyCode: "UYU", currencyName: "Уругвайско песо" },
-		{ currencyCode: "UZS", currencyName: "Узбекистански Сум" },
-		{ currencyCode: "VEF", currencyName: "Венецуелски боливар" },
-		{ currencyCode: "VND", currencyName: "Виетнамски донг" },
-		{ currencyCode: "VUV", currencyName: "Вануатуанско вату" },
-		{ currencyCode: "WST", currencyName: "Самоанска тала" },
-		{ currencyCode: "XAF", currencyName: "Централноафрикански франк" },
-		{ currencyCode: "XCD", currencyName: "Източно Карибски долар" },
-		{ currencyCode: "XDR", currencyName: "Специални права на тираж" },
-		{ currencyCode: "XOF", currencyName: "Западно Африкански франк" },
-		{ currencyCode: "XPF", currencyName: "Френски тихоокеански франк" },
-		{ currencyCode: "YER", currencyName: "Йеменски риал" },
-		{ currencyCode: "ZAR", currencyName: "Южноафрикански ранд" },
-		{ currencyCode: "ZMK", currencyName: "Замбийска куача" },
-		{ currencyCode: "ZWL", currencyName: "Зимбабвийски долар" }
-        */
+	    { currencyCode: "BGN", currencyName: "Български лев", exchangeRate: ko.observable(0) },
+	    { currencyCode: "EUR", currencyName: "Евро", exchangeRate: ko.observable(0) },
+	    { currencyCode: "USD", currencyName: "Американски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "JPY", currencyName: "Японската йена", exchangeRate: ko.observable(0) },
+	    { currencyCode: "GBP", currencyName: "Британската лира", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CHF", currencyName: "Швейцарски франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "AUD", currencyName: "Австралийски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CAD", currencyName: "Канадски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SEK", currencyName: "Шведска крона", exchangeRate: ko.observable(0) },
+	    { currencyCode: "HKD", currencyName: "Хонгконгски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "NOK", currencyName: "Норвежка крона", exchangeRate: ko.observable(0) },
+	    { currencyCode: "AED", currencyName: "Обединените арабски емирства дирхам", exchangeRate: ko.observable(0) },
+	    { currencyCode: "AFN", currencyName: "Афганистански афган", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ALL", currencyName: "Албански лек", exchangeRate: ko.observable(0) },
+	    { currencyCode: "AMD", currencyName: "Арменски драм", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ANG", currencyName: "Холандски Антилски гулден", exchangeRate: ko.observable(0) },
+	    { currencyCode: "AOA", currencyName: "Анголска кванза", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ARS", currencyName: "Аржентинско песо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "AWG", currencyName: "Арубски флорин", exchangeRate: ko.observable(0) },
+	    { currencyCode: "AZN", currencyName: "Азербайджански манат", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BAM", currencyName: "Босна и Херцеговина - Конвертабилна марка", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BBD", currencyName: "Барбейдоски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BDT", currencyName: "Бангладешска така", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BHD", currencyName: "Бахрейнски динар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BIF", currencyName: "Бурундийски франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BMD", currencyName: "Бермудски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BND", currencyName: "Брунейски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BOB", currencyName: "Боливийско боливиано", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BRL", currencyName: "Бразилски реал", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BSD", currencyName: "Бахамски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BTN", currencyName: "Бутански нгултрум", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BWP", currencyName: "Ботсванска пула", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BYR", currencyName: "Беларуска рубла", exchangeRate: ko.observable(0) },
+	    { currencyCode: "BZD", currencyName: "Белизийски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CDF", currencyName: "Конгоански франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CLF", currencyName: "Чилийска единица (UF)", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CLP", currencyName: "Чилийско песо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CNY", currencyName: "Китайски ренминби юан", exchangeRate: ko.observable(0) },
+	    { currencyCode: "COP", currencyName: "Колумбийско песо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CRC", currencyName: "Костарикански колон", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CUP", currencyName: "Кубинско песо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CVE", currencyName: "Кабоверденско ескудо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "CZK", currencyName: "Чешка крона", exchangeRate: ko.observable(0) },
+	    { currencyCode: "DJF", currencyName: "Джибутски франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "DKK", currencyName: "Датска крона", exchangeRate: ko.observable(0) },
+	    { currencyCode: "DOP", currencyName: "Доминиканско песо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "DZD", currencyName: "Алжирски динар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "EGP", currencyName: "Египетска лира", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ETB", currencyName: "Етиопски бир", exchangeRate: ko.observable(0) },
+	    { currencyCode: "FJD", currencyName: "Фиджийски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "FKP", currencyName: "Фолкландска лира", exchangeRate: ko.observable(0) },
+	    { currencyCode: "GEL", currencyName: "Грузинска лари", exchangeRate: ko.observable(0) },
+	    { currencyCode: "GHS", currencyName: "Ганайски седи", exchangeRate: ko.observable(0) },
+	    { currencyCode: "GIP", currencyName: "Гибралтарска лира", exchangeRate: ko.observable(0) },
+	    { currencyCode: "GMD", currencyName: "Гамбийски даласи", exchangeRate: ko.observable(0) },
+	    { currencyCode: "GNF", currencyName: "Гвинейски франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "GTQ", currencyName: "Гватемалски кетцал", exchangeRate: ko.observable(0) },
+	    { currencyCode: "GYD", currencyName: "Гаянски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "HNL", currencyName: "Хондураска лемпра", exchangeRate: ko.observable(0) },
+	    { currencyCode: "HRK", currencyName: "Хърватска куна", exchangeRate: ko.observable(0) },
+	    { currencyCode: "HTG", currencyName: "Хаитянски гурд", exchangeRate: ko.observable(0) },
+	    { currencyCode: "HUF", currencyName: "Унгарски форинт", exchangeRate: ko.observable(0) },
+	    { currencyCode: "IDR", currencyName: "Индонезийска рупия", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ILS", currencyName: "Израелски шекел", exchangeRate: ko.observable(0) },
+	    { currencyCode: "INR", currencyName: "Индийска рупия", exchangeRate: ko.observable(0) },
+	    { currencyCode: "IQD", currencyName: "Иракски динар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "IRR", currencyName: "Ирански риал", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ISK", currencyName: "Исландска крона", exchangeRate: ko.observable(0) },
+	    { currencyCode: "JMD", currencyName: "Ямайски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "JOD", currencyName: "Йордански динар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "KES", currencyName: "Кенийски шилинг", exchangeRate: ko.observable(0) },
+	    { currencyCode: "KGS", currencyName: "Киргизстански сум", exchangeRate: ko.observable(0) },
+	    { currencyCode: "KHR", currencyName: "Камбоджански риел", exchangeRate: ko.observable(0) },
+	    { currencyCode: "KMF", currencyName: "Коморийски франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "KPW", currencyName: "Севернокорейски вон", exchangeRate: ko.observable(0) },
+	    { currencyCode: "KRW", currencyName: "Южнокорейски вон", exchangeRate: ko.observable(0) },
+	    { currencyCode: "KWD", currencyName: "Кувейтски динар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "KZT", currencyName: "Казахстанско тенге", exchangeRate: ko.observable(0) },
+	    { currencyCode: "LAK", currencyName: "Лаоски кип", exchangeRate: ko.observable(0) },
+	    { currencyCode: "LBP", currencyName: "Ливанска лира", exchangeRate: ko.observable(0) },
+	    { currencyCode: "LKR", currencyName: "Шриланкска рупия", exchangeRate: ko.observable(0) },
+	    { currencyCode: "LRD", currencyName: "Либерийски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "LSL", currencyName: "Лесотско лоти", exchangeRate: ko.observable(0) },
+	    { currencyCode: "LTL", currencyName: "Литовски литас", exchangeRate: ko.observable(0) },
+	    { currencyCode: "LVL", currencyName: "Латвийски лат", exchangeRate: ko.observable(0) },
+	    { currencyCode: "LYD", currencyName: "Либийски динар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MAD", currencyName: "Марококански дирхам", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MDL", currencyName: "Молдовска лея", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MGA", currencyName: "Малагасийски ариари", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MKD", currencyName: "Македонски денар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MMK", currencyName: "Мианмарски киат", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MNT", currencyName: "Монголски тугриг", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MOP", currencyName: "Макайска патака", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MRO", currencyName: "Мавританска угуйа", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MUR", currencyName: "Мавританска рупия", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MVR", currencyName: "Малдивска руфия", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MWK", currencyName: "Малавийска кауача", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MXN", currencyName: "Мексиканско песо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MYR", currencyName: "Малайзийски рингит", exchangeRate: ko.observable(0) },
+	    { currencyCode: "MZN", currencyName: "Мозамбикски метикал", exchangeRate: ko.observable(0) },
+	    { currencyCode: "NAD", currencyName: "Намибийски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "NGN", currencyName: "Нигерийска найра", exchangeRate: ko.observable(0) },
+	    { currencyCode: "NIO", currencyName: "Никарагска кордоба", exchangeRate: ko.observable(0) },
+	    { currencyCode: "NPR", currencyName: "Непалски рупей", exchangeRate: ko.observable(0) },
+	    { currencyCode: "NZD", currencyName: "Новозеландски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "OMR", currencyName: "Омански риал", exchangeRate: ko.observable(0) },
+	    { currencyCode: "PAB", currencyName: "Панамска балбоа", exchangeRate: ko.observable(0) },
+	    { currencyCode: "PEN", currencyName: "Нов перуански сол", exchangeRate: ko.observable(0) },
+	    { currencyCode: "PGK", currencyName: "Папуа-новогвинейска кина", exchangeRate: ko.observable(0) },
+	    { currencyCode: "PHP", currencyName: "Филипинско песо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "PKR", currencyName: "Пакистанска рупия", exchangeRate: ko.observable(0) },
+	    { currencyCode: "PLN", currencyName: "Полска злота", exchangeRate: ko.observable(0) },
+	    { currencyCode: "PYG", currencyName: "Парагвайски гуарани", exchangeRate: ko.observable(0) },
+	    { currencyCode: "QAR", currencyName: "Катарски риал", exchangeRate: ko.observable(0) },
+	    { currencyCode: "RON", currencyName: "Румънска лея", exchangeRate: ko.observable(0) },
+	    { currencyCode: "RSD", currencyName: "Сръбски динар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "RUB", currencyName: "Руска рубла", exchangeRate: ko.observable(0) },
+	    { currencyCode: "RWF", currencyName: "Руандийски франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SAR", currencyName: "Саудитски риал", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SBD", currencyName: "Соломоновски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SCR", currencyName: "Сейшелска рупия", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SDG", currencyName: "Суданска лира", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SGD", currencyName: "Сингапурски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SHP", currencyName: "Паунд на остров Света Елена", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SLL", currencyName: "Сиералеонско леоне", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SOS", currencyName: "Сомалийски шилинг", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SRD", currencyName: "Суринамски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "STD", currencyName: "Сао Томе и Принсиписко добра", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SVC", currencyName: "Ел Салвадорски колон", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SYP", currencyName: "Сирийска лира", exchangeRate: ko.observable(0) },
+	    { currencyCode: "SZL", currencyName: "Свазилендски лилангени", exchangeRate: ko.observable(0) },
+	    { currencyCode: "THB", currencyName: "Тайландски бат", exchangeRate: ko.observable(0) },
+	    { currencyCode: "TJS", currencyName: "Таджикски сомони", exchangeRate: ko.observable(0) },
+	    { currencyCode: "TMT", currencyName: "Туркменски манат", exchangeRate: ko.observable(0) },
+	    { currencyCode: "TND", currencyName: "Тунизийски динар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "TOP", currencyName: "Тонганска паанга", exchangeRate: ko.observable(0) },
+	    { currencyCode: "TRY", currencyName: "Турска лира", exchangeRate: ko.observable(0) },
+	    { currencyCode: "TTD", currencyName: "Тринидадски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "TWD", currencyName: "Нов Тайвански долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "TZS", currencyName: "Танзанийски шилинг", exchangeRate: ko.observable(0) },
+	    { currencyCode: "UAH", currencyName: "Украинска гривна", exchangeRate: ko.observable(0) },
+	    { currencyCode: "UGX", currencyName: "Угандийски шилинг", exchangeRate: ko.observable(0) },
+	    { currencyCode: "UYU", currencyName: "Уругвайско песо", exchangeRate: ko.observable(0) },
+	    { currencyCode: "UZS", currencyName: "Узбекистански Сум", exchangeRate: ko.observable(0) },
+	    { currencyCode: "VEF", currencyName: "Венецуелски боливар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "VND", currencyName: "Виетнамски донг", exchangeRate: ko.observable(0) },
+	    { currencyCode: "VUV", currencyName: "Вануатуанско вату", exchangeRate: ko.observable(0) },
+	    { currencyCode: "WST", currencyName: "Самоанска тала", exchangeRate: ko.observable(0) },
+	    { currencyCode: "XAF", currencyName: "Централноафрикански франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "XCD", currencyName: "Източно Карибски долар", exchangeRate: ko.observable(0) },
+	    { currencyCode: "XDR", currencyName: "Специални права на тираж", exchangeRate: ko.observable(0) },
+	    { currencyCode: "XOF", currencyName: "Западно Африкански франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "XPF", currencyName: "Френски тихоокеански франк", exchangeRate: ko.observable(0) },
+	    { currencyCode: "YER", currencyName: "Йеменски риал", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ZAR", currencyName: "Южноафрикански ранд", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ZMK", currencyName: "Замбийска куача", exchangeRate: ko.observable(0) },
+	    { currencyCode: "ZWL", currencyName: "Зимбабвийски долар", exchangeRate: ko.observable(0) }
 	];
-
 
     //Table with convertion rates:
     self.chosenTableCurrency = ko.observable(self.allCurrencies[0].currencyCode);
-    self.fillCurrencyExchangeTable = function(view, b){
+    self.fillCurrencyExchangeTable = function(){
         for (var i = 0; i < self.allCurrencies.length; i++) {
             (function(i){
                 $.ajax({
                     url: 'http://rate-exchange.appspot.com/currency?from=' + self.chosenTableCurrency() + '&to=' + self.allCurrencies[i].currencyCode,
                     dataType:'jsonp',
-                    success: function(data) {
+                    success: function(data){
                         //console.log("1 " + data.to + " is " + data.rate + " " + data.from);
                         self.allCurrencies[i].exchangeRate(data.rate);
                     },
-                    error: function() {
+                    error: function(){
                         console.log('Problem :(');
                     }
                 });
@@ -377,7 +195,7 @@ function ExchangeRatesViewModel() {
 
 
     //Currency Calculator:
-    self.calculationFinalCurrency = "BGN";
+    self.calculationFinalCurrency = ko.observable(self.allCurrencies[0].currencyCode);
     self.CalculationBox = function(value, code){
         this.chosenCalculationValue = ko.observable(value);
         this.chosenCalculationCurrency = ko.observable(code);
@@ -389,43 +207,27 @@ function ExchangeRatesViewModel() {
         self.calculationsArray.push(new self.CalculationBox(1, 'BGN'));
     };
     self.finalResult = ko.observable(0);
-    self.calculateFinalResult = function(){
-        var grandTotal = 0;
-        console.log("1");
-        var promises=[];
-        for (var i = 0; i < self.calculationsArray().length; i++) {
-        	console.log("2");
-        	//(function (i) {
+    self.calculateFinalResult = ko.computed(function(){
+    	var promises = [];
+    	var grandTotal = 0;
+    	for (var i = 0; i < self.calculationsArray().length; i++) {
             var request = $.ajax({
-                url: 'http://rate-exchange.appspot.com/currency?from=' + self.calculationsArray()[i].chosenCalculationCurrency() + '&to=' + self.calculationFinalCurrency + "&q=" + self.calculationsArray()[i].chosenCalculationValue(),
+                url: 'http://rate-exchange.appspot.com/currency?from=' + self.calculationsArray()[i].chosenCalculationCurrency() + '&to=' + self.calculationFinalCurrency() + "&q=" + self.calculationsArray()[i].chosenCalculationValue(),
                 dataType:'jsonp',
                 success: function(data){
-                	console.log("3n");
-                    //console.log("1 " + data.to + " is " + data.rate + " " + data.from);
                     grandTotal += data.v;
                 },
                 error: function() {
                     console.log('Problem :(');
                 }
             });
-            //})(i);
-            //total += parseFloat(self.calculationsArray()[i].chosenCalculationValue());
-            //console.log(self.calculationsArray()[i].chosenCalculationCurrency());
+            promises.push(request);
         }
-        promises.push(request);
 
         $.when.apply(null, promises).done(function(){
 		    self.finalResult(parseFloat(grandTotal));
 		});
-    };
-
-
-
+    });
 }
 
 ko.applyBindings(new ExchangeRatesViewModel());
-
-
-$(document).ready(function () {
-	//KK.loadExchangeRatesData();
-});
