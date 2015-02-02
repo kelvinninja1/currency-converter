@@ -31,7 +31,7 @@ header h1{
     color: #fff;
     text-shadow: 1px 1px 5px #000;
     font-weight: normal;
-    font-family: 'Marck Script', sans;
+    font-family: 'Marck Script', Arial, sans-serif;
     font-size: 25px;
     letter-spacing: 1px;
     padding-top: 12px;
@@ -44,7 +44,7 @@ header h2 {
     color: #111;
     text-shadow: 1px 1px 5px #999;
     font-weight: normal;
-    font-family: 'Marck Script', sans;
+    font-family: 'Marck Script', Arial, sans-serif;
     font-size: 20px;
     letter-spacing: 1px;
     border: none;
@@ -81,7 +81,7 @@ section {
     position: relative;
     width: 1000px;
     height: 630px;
-    margin: -40px auto;
+    margin: -20px auto;
     background: url("../img/backgroundImg/notebook.png") no-repeat; 
 }
 section p {
@@ -119,14 +119,13 @@ h3 {
     color: #222;
     text-shadow: 1px 1px 5px #fff;
     font-weight: normal;
-    font-family: 'Marck Script', sans;
+    font-family: 'Marck Script', Arial, sans-serif;
     font-size: 24px;
     text-align: left;
-    text-indent: 25px;
-    margin-left: -10px;
+    margin-left: 15px;
     margin-bottom: 5px;
-    margin-top: 25px;
-    padding: 2px 0 2px 0;
+    margin-top: 15px;
+    padding: 2px 0;
     border-bottom: 1px dashed #999;
 }
 
@@ -183,23 +182,19 @@ h3 {
     color: #333;
 }
 
-
+select {
+    width: 150px;
+    padding: 5px;
+}
 
 .calculator-boxes-wrapper{
     width: 342px;
     height: auto;
     margin: 0 auto;
 }
-.calculator-boxes-wrapper .dk_container {
-    margin-top: 5px;
-}
-#dk_container_selectFrom {
-    margin-top: 4px;
-}
-.calculatorCurrencyBox{
+.calculator-box {
     border: 1px dashed #999;
     border-top: none;
-    width: 240px;
     height: 42px;
     margin: 0 auto;
     padding: 10px 15px 10px 20px;
@@ -215,15 +210,14 @@ h3 {
     width: 397px;
 }
 .calculator-boxes-wrapper input {
-    border-radius: 6px;
+    border-radius: 3px;
     width: 100px;
-    height: 30px;
     padding: 5px;
-    font-size: 17px;
+    font-size: 16px;
     text-align: right;
     color: #3EC3FF;
     font-weight: bold;
-    font-family: Tahoma, sans;
+    font-family: Tahoma, Arial, sans-serif;
     margin-right: 7px;
 }
 .calculator-boxes-wrapper input:hover {
@@ -247,7 +241,7 @@ h3 {
     background: url("../img/backgroundImg/menuBG.gif") repeat scroll 0 0;
     //background: #ffff99;
     font-size: 22px;
-    font-family: 'Marck Script', sans;
+    font-family: 'Marck Script', Arial, sans-serif;
     border-top: none;
     -webkit-transition: background 0.4s ease 0s;
     -moz-transition: background 0.4s ease 0s;

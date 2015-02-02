@@ -21,15 +21,13 @@
         видове валути.</h2>
     </header>
 
-    <?php include 'inc/nav.html'; ?>
-
     <section>
         <div class="calculator">
             <h3>Валутен калкулатор:</h3>
 
             <div class="calculator-boxes-wrapper" data-bind="foreach: calculationsArray">
                 <div class="calculator-box">
-                    <input type="number" data-bind="value: chosenCalculationValue, valueUpdate: 'afterkeydown'" />
+                    <input type="text" pattern="\d+(\.\d{2})?" data-bind="value: chosenCalculationValue, valueUpdate: 'afterkeydown'" />
                     <select data-bind="options: $root.allCurrencies, value: chosenCalculationCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName'"></select>
                 </div>
             </div>

@@ -1,8 +1,15 @@
 var KK = {
-	onlyNumbers: function(){
-		if(isNaN($("#calculatorCurrencyBoxValue1").val()-0)) {
+	formatValue: function(value){
+		if (value.toString().indexOf(',') !== -1) {
+			return value.replace(',', '.');
+		}
+		return value;
+	},
+	isNumber: function(value){
+		if (isNaN(value-0)) {
 			return false;
 		}
+		return true;
 	}
 };
 
@@ -210,18 +217,23 @@ function ExchangeRatesViewModel() {
     self.calculateFinalResult = ko.computed(function(){
     	var promises = [];
     	var grandTotal = 0;
+    	var convertableValue;
     	for (var i = 0; i < self.calculationsArray().length; i++) {
-            var request = $.ajax({
-                url: 'http://rate-exchange.appspot.com/currency?from=' + self.calculationsArray()[i].chosenCalculationCurrency() + '&to=' + self.calculationFinalCurrency() + "&q=" + self.calculationsArray()[i].chosenCalculationValue(),
-                dataType:'jsonp',
-                success: function(data){
-                    grandTotal += data.v;
-                },
-                error: function() {
-                    console.log('Problem :(');
-                }
-            });
-            promises.push(request);
+    		convertableValue = self.calculationsArray()[i].chosenCalculationValue();
+    		convertableValue = KK.formatValue(convertableValue);
+    		if (KK.isNumber(convertableValue)) {
+    			var request = $.ajax({
+	                url: 'http://rate-exchange.appspot.com/currency?from=' + self.calculationsArray()[i].chosenCalculationCurrency() + '&to=' + self.calculationFinalCurrency() + "&q=" + convertableValue,
+	                dataType:'jsonp',
+	                success: function(data){
+	                    grandTotal += data.v;
+	                },
+	                error: function() {
+	                    console.log('Problem :(');
+	                }
+	            });
+	            promises.push(request);
+    		}
         }
 
         $.when.apply(null, promises).done(function(){
