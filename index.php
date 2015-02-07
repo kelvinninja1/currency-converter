@@ -32,7 +32,7 @@
                 </div>
             </div>
 
-            <button class="calculator-add-box" data-bind="click: addCalcunationBox, visible: calculationsArray().length < 15">+ Добави</button>
+            <button class="calculator-add-box" data-bind="click: addCalcunationBox, visible: calculationsArray().length < 5">+ Добави</button>
 
             <div class="calculator-total">
                 Резултат:

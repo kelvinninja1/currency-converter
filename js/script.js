@@ -179,27 +179,6 @@ function ExchangeRatesViewModel() {
 	    { currencyCode: "ZWL", currencyName: "Зимбабвийски долар", exchangeRate: ko.observable(0) }
 	];
 
-    //Table with convertion rates:
-    self.chosenTableCurrency = ko.observable(self.allCurrencies[0].currencyCode);
-    self.fillCurrencyExchangeTable = function(){
-        for (var i = 0; i < self.allCurrencies.length; i++) {
-            (function(i){
-                $.ajax({
-                    url: 'http://rate-exchange.appspot.com/currency?from=' + self.chosenTableCurrency() + '&to=' + self.allCurrencies[i].currencyCode,
-                    dataType:'jsonp',
-                    success: function(data){
-                        //console.log("1 " + data.to + " is " + data.rate + " " + data.from);
-                        self.allCurrencies[i].exchangeRate(data.rate);
-                    },
-                    error: function(){
-                        console.log('Problem :(');
-                    }
-                });
-            })(i);
-        }
-    };
-    self.fillCurrencyExchangeTable();
-
 
     //Currency Calculator:
     self.calculationFinalCurrency = ko.observable(self.allCurrencies[0].currencyCode);
@@ -208,7 +187,8 @@ function ExchangeRatesViewModel() {
         this.chosenCalculationCurrency = ko.observable(code);
     }
     self.calculationsArray = ko.observableArray([
-        new self.CalculationBox(1, 'BGN')
+        new self.CalculationBox(1, 'USD'),
+        new self.CalculationBox(2, 'EUR')
     ]);
     self.addCalcunationBox = function(){
         self.calculationsArray.push(new self.CalculationBox(1, 'BGN'));
@@ -240,6 +220,28 @@ function ExchangeRatesViewModel() {
 		    self.finalResult(parseFloat(grandTotal));
 		});
     });
+
+
+    //Table with convertion rates:
+    self.chosenTableCurrency = ko.observable(self.allCurrencies[0].currencyCode);
+    self.fillCurrencyExchangeTable = function(){
+        for (var i = 0; i < self.allCurrencies.length; i++) {
+            (function(i){
+                $.ajax({
+                    url: 'http://rate-exchange.appspot.com/currency?from=' + self.chosenTableCurrency() + '&to=' + self.allCurrencies[i].currencyCode,
+                    dataType:'jsonp',
+                    success: function(data){
+                        //console.log("1 " + data.to + " is " + data.rate + " " + data.from);
+                        self.allCurrencies[i].exchangeRate(data.rate);
+                    },
+                    error: function(){
+                        console.log('Problem :(');
+                    }
+                });
+            })(i);
+        }
+    };
+    self.fillCurrencyExchangeTable();
 }
 
 ko.applyBindings(new ExchangeRatesViewModel());
