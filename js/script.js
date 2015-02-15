@@ -5,11 +5,13 @@ var KK = {
 		}
 		return value;
 	},
-	isNumber: function(value){
-		if (isNaN(value-0)) {
-			return false;
+	isNumbersOnly: function(value){
+		var isNum = /^\d+$/;
+		if (isNum.test(value)) {
+			value = parseFloat(value);
+			return true;
 		}
-		return true;
+		return false;
 	}
 };
 
@@ -181,11 +183,12 @@ function ExchangeRatesViewModel() {
 
 
     //Currency Calculator:
+    self.isCalculating = ko.observable(true);
     self.calculationFinalCurrency = ko.observable(self.allCurrencies[0].currencyCode);
     self.CalculationBox = function(value, code){
         this.chosenCalculationValue = ko.observable(value);
         this.chosenCalculationCurrency = ko.observable(code);
-    }
+    };
     self.calculationsArray = ko.observableArray([
         new self.CalculationBox(1, 'USD'),
         new self.CalculationBox(2, 'EUR')
@@ -195,13 +198,14 @@ function ExchangeRatesViewModel() {
     };
     self.finalResult = ko.observable(0);
     self.calculateFinalResult = ko.computed(function(){
+    	self.isCalculating(true);
     	var promises = [];
     	var grandTotal = 0;
     	var convertableValue;
     	for (var i = 0; i < self.calculationsArray().length; i++) {
     		convertableValue = self.calculationsArray()[i].chosenCalculationValue();
     		convertableValue = KK.formatValue(convertableValue);
-    		if (KK.isNumber(convertableValue)) {
+    		if (KK.isNumbersOnly(convertableValue)) {
     			var request = $.ajax({
 	                url: 'http://rate-exchange.appspot.com/currency?from=' + self.calculationsArray()[i].chosenCalculationCurrency() + '&to=' + self.calculationFinalCurrency() + "&q=" + convertableValue,
 	                dataType:'jsonp',
@@ -213,11 +217,15 @@ function ExchangeRatesViewModel() {
 	                }
 	            });
 	            promises.push(request);
+    		} else {
+    			self.finalResult("Проблем!");
+    			return;
     		}
         }
 
         $.when.apply(null, promises).done(function(){
 		    self.finalResult(parseFloat(grandTotal));
+		    self.isCalculating(false);
 		});
     });
 

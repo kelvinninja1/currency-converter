@@ -4,16 +4,6 @@ RewriteEngine on
 RewriteCond %{HTTP_HOST} ^www.currency.superkalo.com [NC]
 RewriteRule ^(.*)$ http://currency.superkalo.com/$1 [L,R=301]
 
-RewriteRule ^за-проекта-валутен-конвертор-и-калкулатор aboutProject.php [L,QSA]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /aboutProject\.php\ HTTP/
-RewriteRule ^aboutProject\.php$ http://currency.superkalo.com/за-проекта-валутен-конвертор-и-калкулатор [R=301,L]
-RewriteRule ^aboutProject\.html$ http://currency.superkalo.com/за-проекта-валутен-конвертор-и-калкулатор [R=301,L]
-
-RewriteRule ^за-контакти contacts.php [L,QSA]
-RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /contacts\.php\ HTTP/
-RewriteRule ^contacts\.php$ http://currency.superkalo.com/за-контакти [R=301,L]
-RewriteRule ^contacts\.html$ http://currency.superkalo.com/за-контакти [R=301,L]
-
 RewriteCond %{THE_REQUEST} ^[A-Z]{3,9}\ /index\.php\ HTTP/
 RewriteRule ^index\.php$ http://currency.superkalo.com/ [R=301,L]
 
