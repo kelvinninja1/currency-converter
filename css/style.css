@@ -22,16 +22,20 @@ select {
     -webkit-appearance: none;
     appearance: none;
     vertical-align: bottom;
+    background-color: #fff;
+    border: 1px solid #b0b0b0;
 }
 select {
     width: 160px;
-    padding: 5px 20px 5px 5px;
+    padding: 5px 25px 5px 5px;
     border-radius: 3px;
     border-bottom-left-radius: 0;
     border-top-left-radius: 0;
+    position: relative;
+    background: url(../img/down-arrow.svg) no-repeat 95% center #fff;
+    background-size: auto 8px;
 }
 input{
-    border: 1px solid #b0b0b0;
     color: #979797;
 }
 header {
