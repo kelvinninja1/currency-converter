@@ -218,7 +218,7 @@ function ExchangeRatesViewModel() {
 	            });
 	            promises.push(request);
     		} else {
-    			self.finalResult("Проблем!");
+    			self.finalResult("-");
     			return;
     		}
         }
