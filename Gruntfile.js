@@ -4,8 +4,18 @@ module.exports = function(grunt) {
         uglify: {
             production: {
                 files: {
-                    'js/script.min.js': ['js/script.js'],
-                    'css/style.min.css': ['css/style.css']
+                    'js/script.min.js': ['js/script.js']
+                }
+            }
+        },
+        cssmin: {
+            options: {
+                shorthandCompacting: false,
+                roundingPrecision: -1
+            },
+            target: {
+                files: {
+                    'css/style.min.css': 'css/style.css'
                 }
             }
         },
@@ -22,6 +32,7 @@ module.exports = function(grunt) {
 
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-autoprefixer');
+    grunt.loadNpmTasks('grunt-contrib-cssmin');
 
-    grunt.registerTask('default', ['uglify', 'autoprefixer']);
+    grunt.registerTask('default', ['uglify', 'cssmin', 'autoprefixer']);
 };

@@ -168,8 +168,7 @@ function ExchangeRatesViewModel() {
 	    { currencyCode: "XPF", currencyName: "Френски тихоокеански франк", exchangeRate: ko.observable('-') },
 	    { currencyCode: "YER", currencyName: "Йеменски риал", exchangeRate: ko.observable('-') },
 	    { currencyCode: "ZAR", currencyName: "Южноафрикански ранд", exchangeRate: ko.observable('-') },
-	    { currencyCode: "ZMK", currencyName: "Замбийска куача", exchangeRate: ko.observable('-') },
-	    { currencyCode: "ZWL", currencyName: "Зимбабвийски долар", exchangeRate: ko.observable('-') }
+	    { currencyCode: "ZMK", currencyName: "Замбийска куача", exchangeRate: ko.observable('-') }
 	];
 
 	self.formatOptionLabel = function(item){
