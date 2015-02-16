@@ -33,8 +33,8 @@
 
             <div class="calculator-boxes-holder" data-bind="foreach: calculationsArray">
                 <div class="calculator-box">
-                    <input type="number" data-bind="value: chosenCalculationValue, valueUpdate: 'afterkeydown', css: { error: KK.isNumbersOnly(chosenCalculationValue()) === false }" />
-                    <select data-bind="options: $root.allCurrencies, value: chosenCalculationCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName'"></select>
+                    <input type="number" data-bind="value: chosenCalculationValue, valueUpdate: 'afterkeydown', css: { error: ValidationHelper.isNumbersOnly(chosenCalculationValue()) === false }" />
+                    <select data-bind="options: $root.allCurrencies, value: chosenCalculationCurrency, optionsValue: 'currencyCode', optionsText: $root.formatOptionLabel"></select>
                 </div>
             </div>
 
@@ -43,14 +43,15 @@
             <div class="calculator-total">
                 Резултат:
                 <span data-bind="text: finalResult, css: { calculating: isCalculating() }"></span>
-                <select id="calculatorResultOption" data-bind="options: allCurrencies, value: calculationFinalCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName'"></select>
+                <select id="calculatorResultOption" data-bind="options: allCurrencies, value: calculationFinalCurrency, optionsValue: 'currencyCode', optionsText: formatOptionLabel"></select>
             </div>
         </div>
 
         <div class="currency-rates">
             <h3>Валутен конвертор:</h3>
-            <select data-bind="options: allCurrencies, value: chosenTableCurrency, optionsValue: 'currencyCode', optionsText: 'currencyName', event:{ change: fillCurrencyExchangeTable }"></select>
-            <p>Стойност на 1<span data-bind="text: chosenTableCurrency"></span>:</p>
+            <div class="text-wrapper">Стойност на единица:
+                <select data-bind="options: allCurrencies, value: chosenTableCurrency, optionsValue: 'currencyCode', optionsText: formatOptionLabel, event:{ change: fillCurrencyExchangeTable }"></select>
+            </div>
 
             <table class="currency-rates-table">
                 <thead>
@@ -72,14 +73,10 @@
     </section>
 
     <footer>
-        <img src="img/facebook.png" class="rotate" alt="Facebook Fan Page" />
-        <p><strong>Валутните курсове се обновяват на всеки час</strong>. Всички<br />
-        <strong>валутни преобразувания</strong> са на <strong>база курса на щатския долар</strong> (USD).</p>
+        <p><strong>Валутните курсове се обновяват на всеки 10 минути</strong>. Всички<br />
+        <strong>валутни преобразувания</strong> се извличат от Google чрез <a href="http://rate-exchange.appspot.com/" target="_blank">Rate Exchange API</a>.</p>
         <p>
-            <a href="http://superkalo.com" target="_blank">Калоян Косев</a>, 2012 - 1013 | 
-            <a href="http://currency.superkalo.com">Начало</a> | 
-            <a href="за-проекта-валутен-конвертор-и-калкулатор">За проекта</a> | 
-            <a href="за-контакти">Контакти</a>
+            <a href="http://superkalo.com" target="_blank">Калоян Косев</a>, 2012 - <?= date('Y'); ?> | <a href="mailto:currency@superkalo.com" target="_blank">currency@superkalo.com</a>
         </p>
     </footer>
 
