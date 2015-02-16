@@ -11,7 +11,7 @@
         <meta name="description" content="Универсален валутен конвертор и калкулатор с отворен код, преобразуващ всички видове свободно конвертируеми една към друга световни валути." />
         <meta name="keywords" content="валутни курсове, конвертиране на валути, валута, валутни котировки, валутен конвертор, валутен калкулатор, обменни валутни курсове" />
 
-        <link rel="stylesheet" href="lib/normalize.css/normalize.css" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" />
         <link rel="stylesheet" href="css/style.css" />
 
         <!--[if lt IE 9]>
@@ -80,10 +80,8 @@
         </p>
     </footer>
 
-    <script src="lib/jquery/dist/jquery.js"></script>
-    <script src="lib/underscore/underscore.js"></script>
-    <script src="lib/knockout/dist/knockout.js"></script>
-
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
     <script src="js/script.js"></script>
 
 </body>
