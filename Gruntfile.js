@@ -11,7 +11,9 @@ module.exports = function(grunt) {
         cssmin: {
             options: {
                 shorthandCompacting: false,
-                roundingPrecision: -1
+                roundingPrecision: -1,
+                rebase: false,
+                sourceMap: false
             },
             target: {
                 files: {

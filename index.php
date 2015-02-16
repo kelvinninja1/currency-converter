@@ -12,7 +12,8 @@
         <meta name="keywords" content="валутни курсове, конвертиране на валути, валута, валутни котировки, валутен конвертор, валутен калкулатор, обменни валутни курсове" />
 
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/normalize/3.0.2/normalize.min.css" />
-        <link rel="stylesheet" href="css/style.css" />
+        <link rel="stylesheet" href="//fonts.googleapis.com/css?family=Marck+Script&subset=cyrillic" />
+        <link rel="stylesheet" href="css/style.min.css" />
 
         <!--[if lt IE 9]>
             <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -82,7 +83,7 @@
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/knockout/3.2.0/knockout-min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.min.js"></script>
 
 </body>
 </html>
