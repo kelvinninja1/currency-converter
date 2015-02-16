@@ -205,7 +205,7 @@ function ExchangeRatesViewModel() {
 	                    grandTotal += data.v;
 	                },
 	                error: function() {
-	                    console.log('Problem :(');
+	                    console.log(':(');
 	                }
 	            });
 	            promises.push(request);
