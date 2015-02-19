@@ -6,6 +6,7 @@
         <!--[if IE]>
             <meta http-equiv="X-UA-Compatible" content="IE=Edge">
         <![endif]-->
+        <!-- Deploy test -->
 
         <title>Валутен Конвертор и Калкулатор</title>
         <meta name="description" content="Универсален валутен конвертор и калкулатор с отворен код, преобразуващ всички видове свободно конвертируеми една към друга световни валути." />
