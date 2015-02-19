@@ -12,8 +12,7 @@ module.exports = function(grunt) {
             options: {
                 shorthandCompacting: false,
                 roundingPrecision: -1,
-                rebase: false,
-                sourceMap: false
+                rebase: false
             },
             target: {
                 files: {
