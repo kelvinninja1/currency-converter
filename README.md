@@ -1,6 +1,7 @@
 # Валутен Конвертор и Калкулатор
 
-The idea: A Website consisting of universal free online open source currency converter and calculator - converting almost all kinds of regional and a freely convertible to other world currencies.<br />
-The Purpose: Use the website to navigate the conversion rates of over 150 world currencies. Of course, note that each institution formed independently of the exchange rate on specific currency pairs.<br />
-Exchange rates ​​are updated every hour. All currency conversions are based on the rate of the United States dollar.<br />
-The Information about the specific global currencies is consistent with the international standard ISO 4217, established by the International Organization for Standardization that defines three-letter codes for all currencies.
+Уеб сайт, представляващ валутен конвертор и калкулатор реализиран на KnockoutJS, преобразуващ всички основни и регионални видове свободно конвертируеми една към друга световни валути.
+
+Използвайте калкулатора, за да се ориентирате за обменните курсове на над 150 световни валути. Разбира се, имайте в предвид, че всяка институция формира самостоятелно курса за обмен на конкретните валутни двойки и съответно са възможни разминавания.
+
+Курсовете се взимат чрез (https://github.com/hippasus/ExchangeRates)[Rate Exchange JSON/JSONP APIs].
